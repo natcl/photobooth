@@ -1,5 +1,5 @@
 /**
- * Copyright 2013, 2016 IBM Corp.
+ * Copyright JS Foundation and other contributors, http://js.foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,9 @@
 // The `https` setting requires the `fs` module. Uncomment the following
 // to make it available:
 //var fs = require("fs");
+
+const picturePath = process.env.PICTURE_PATH || "/home/pi/Pictures";
+process.env.PICTURE_PATH = picturePath;
 
 module.exports = {
     // the tcp port that the Node-RED web server is listening on
@@ -47,12 +50,23 @@ module.exports = {
     // The maximum length, in characters, of any message sent to the debug sidebar tab
     debugMaxLength: 1000,
 
+    // Colourise the console output of the debug node
+    //debugUseColors: true,
+
     // The file containing the flows. If not set, it defaults to flows_<hostname>.json
-    flowFile: 'flows.json',
+    flowFile: 'flows_photobooth.json',
 
     // To enabled pretty-printing of the flow within the flow file, set the following
     //  property to true:
-    //flowFilePretty: true,
+    flowFilePretty: true,
+
+    // By default, credentials are encrypted in storage using a generated key. To
+    // specify your own secret, set the following property.
+    // If you want to disable encryption of credentials, set this property to false.
+    // Note: once you set this property, do not change it - doing so will prevent
+    // node-red from being able to decrypt your existing credentials and they will be
+    // lost.
+    //credentialSecret: "a-secret-key",
 
     // By default, all user data is stored in the Node-RED install directory. To
     // use a different location, the following property can be used
@@ -65,7 +79,7 @@ module.exports = {
     // By default, the Node-RED UI is available at http://localhost:1880/
     // The following property can be used to specifiy a different root path.
     // If set to false, this is disabled.
-    httpAdminRoot: '/admin',
+    //httpAdminRoot: '/admin',
 
     // Some nodes, such as HTTP In, can be used to listen for incoming http requests.
     // By default, these are served relative to '/'. The following property
@@ -80,7 +94,15 @@ module.exports = {
     // When httpAdminRoot is used to move the UI to a different root path, the
     // following property can be used to identify a directory of static content
     // that should be served at http://localhost:1880/.
-    httpStatic: '/home/pi/source/photobooth/static/photos',
+    httpStatic: picturePath,
+
+    // The maximum size of HTTP request that will be accepted by the runtime api.
+    // Default: 5mb
+    //apiMaxLength: '5mb',
+
+    // If you installed the optional node-red-dashboard you can set it's path
+    // relative to httpRoot
+    //ui: { path: "ui" },
 
     // Securing Node-RED
     // -----------------
@@ -113,6 +135,10 @@ module.exports = {
     //    cert: fs.readFileSync('certificate.pem')
     //},
 
+    // The following property can be used to cause insecure HTTP connections to
+    // be redirected to HTTPS.
+    //requireHttps: true
+
     // The following property can be used to disable the editor. The admin API
     // is not affected by this option. To disable both the editor and the admin
     // API, use either the httpRoot or httpAdminRoot properties
@@ -138,9 +164,10 @@ module.exports = {
     // in front of all http in nodes. This allows custom authentication to be
     // applied to all http in nodes, or any other sort of common request processing.
     //httpNodeMiddleware: function(req,res,next) {
-    //   // Handle/reject the request, or pass it on to the http in node
-    //   // by calling next();
-    //   next();
+    //    // Handle/reject the request, or pass it on to the http in node by calling next();
+    //    // Optionally skip our rawBodyParser by setting this to true;
+    //    //req.skipRawBodyParser = true;
+    //    next();
     //},
 
     // Anything in this hash is globally available to all functions.
@@ -151,7 +178,8 @@ module.exports = {
     //    context.global.os
 
     functionGlobalContext: {
-        // os:require('os'),
+        picturePath:picturePath
+	// os:require('os'),
         // octalbonescript:require('octalbonescript'),
         // jfive:require("johnny-five"),
         // j5board:require("johnny-five").Board({repl:false})

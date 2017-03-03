@@ -1,0 +1,510 @@
+[
+    {
+        "id": "a567291d.a12e98",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "d93639c4.79b51",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard"
+    },
+    {
+        "id": "5743a3e7.934534",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "d93639c4.79b51",
+        "disp": true,
+        "width": "12"
+    },
+    {
+        "id": "bb69d3ec.0f5408",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "Helvetica Neue",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Helvetica Neue",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "Helvetica Neue"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "fa4e9a9b.38d828",
+        "type": "inject",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 120,
+        "y": 140,
+        "wires": [
+            [
+                "f45e98ae.8825f8"
+            ]
+        ]
+    },
+    {
+        "id": "71557d11.d68f04",
+        "type": "exec",
+        "z": "a567291d.a12e98",
+        "command": "raspistill --nopreview -t 10 -o",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "",
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "7f2e07fe.87fa6",
+                "4eb52cf0.4cde84"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2f72ba6e.e9e65e",
+        "type": "ui_template",
+        "z": "a567291d.a12e98",
+        "group": "5743a3e7.934534",
+        "name": "",
+        "order": 0,
+        "width": "12",
+        "height": "12",
+        "format": "<img src=\"data:image/gif;base64,{{msg.payload}}\">",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "x": 1280,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2697349.8e041",
+        "type": "base64",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "x": 1120,
+        "y": 120,
+        "wires": [
+            [
+                "2f72ba6e.e9e65e"
+            ]
+        ]
+    },
+    {
+        "id": "f577b05a.1367e",
+        "type": "midi in",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "midiport": "1",
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "ee1ed7f8.3f3458"
+            ]
+        ]
+    },
+    {
+        "id": "ee1ed7f8.3f3458",
+        "type": "trigger",
+        "z": "a567291d.a12e98",
+        "op1": "1",
+        "op2": "",
+        "op1type": "num",
+        "op2type": "nul",
+        "duration": "2",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "name": "",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "a1d0d9f4.878c4"
+            ]
+        ]
+    },
+    {
+        "id": "e13d2344.5666c8",
+        "type": "debug",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 690,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f45e98ae.8825f8",
+        "type": "template",
+        "z": "a567291d.a12e98",
+        "name": "filename",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{{global.picturePath}}}/{{payload}}.jpg",
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "11ad2b18.0b6a15"
+            ]
+        ]
+    },
+    {
+        "id": "4eb52cf0.4cde84",
+        "type": "debug",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 990,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "11ad2b18.0b6a15",
+        "type": "change",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 140,
+        "wires": [
+            [
+                "71557d11.d68f04"
+            ]
+        ]
+    },
+    {
+        "id": "7f2e07fe.87fa6",
+        "type": "file in",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "filename": "",
+        "format": "",
+        "x": 970,
+        "y": 120,
+        "wires": [
+            [
+                "e2697349.8e041"
+            ]
+        ]
+    },
+    {
+        "id": "a1d0d9f4.878c4",
+        "type": "change",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "f45e98ae.8825f8",
+                "e13d2344.5666c8"
+            ]
+        ]
+    },
+    {
+        "id": "30133e17.c0de92",
+        "type": "http in",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "url": "/pictures",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 540,
+        "wires": [
+            [
+                "612942b5.8bf144"
+            ]
+        ]
+    },
+    {
+        "id": "704d88c9.3e5768",
+        "type": "exec",
+        "z": "a567291d.a12e98",
+        "command": "cd",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "",
+        "x": 430,
+        "y": 540,
+        "wires": [
+            [
+                "89b18c51.97dd98"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "89b18c51.97dd98",
+        "type": "split",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "splt": "\\n",
+        "x": 590,
+        "y": 520,
+        "wires": [
+            [
+                "e09405eb.162e08"
+            ]
+        ]
+    },
+    {
+        "id": "e09405eb.162e08",
+        "type": "join",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "timeout": "",
+        "count": "",
+        "x": 730,
+        "y": 520,
+        "wires": [
+            [
+                "e4dd4b3e.b16d98"
+            ]
+        ]
+    },
+    {
+        "id": "a95c2a3b.78ebb",
+        "type": "template",
+        "z": "a567291d.a12e98",
+        "name": "html",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{#payload}}\n    <a href=\"{{.}}\">\n        <img src=\"{{.}}\" width=10%>\n    </a>\n{{/payload}}",
+        "x": 1050,
+        "y": 520,
+        "wires": [
+            [
+                "491451b9.b4ebd8"
+            ]
+        ]
+    },
+    {
+        "id": "491451b9.b4ebd8",
+        "type": "http response",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "x": 1250,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "73abcee5.313b88",
+        "type": "comment",
+        "z": "a567291d.a12e98",
+        "name": "This flow exposes a webpage at /pictures and displays all pictures in the pictures folder",
+        "info": "",
+        "x": 340,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9d4aad39.527fb8",
+        "type": "comment",
+        "z": "a567291d.a12e98",
+        "name": "This flow takes a picture with the timestamp as filename, stores it in the pictures folder and displays it on the Dashboard",
+        "info": "",
+        "x": 440,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e4dd4b3e.b16d98",
+        "type": "switch",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "property": "payload.length",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 870,
+        "y": 520,
+        "wires": [
+            [
+                "a95c2a3b.78ebb"
+            ],
+            [
+                "3657677a.a0b78"
+            ]
+        ]
+    },
+    {
+        "id": "3657677a.a0b78",
+        "type": "template",
+        "z": "a567291d.a12e98",
+        "name": "No Pictures",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<h1>No pictures yet !</h1>",
+        "x": 1070,
+        "y": 560,
+        "wires": [
+            [
+                "491451b9.b4ebd8"
+            ]
+        ]
+    },
+    {
+        "id": "612942b5.8bf144",
+        "type": "template",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{{{global.picturePath}}} ; ls *.jpg",
+        "x": 290,
+        "y": 540,
+        "wires": [
+            [
+                "704d88c9.3e5768"
+            ]
+        ]
+    }
+]
