@@ -1,0 +1,24 @@
+{
+  "name": "photobooth",
+  "version": "1.0.0",
+  "description": "A Node-RED based photobooth for Raspberry PI",
+  "main": "settings.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natcl/photobooth.git"
+  },
+  "author": "Nathanaël Lécaudé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natcl/photobooth/issues"
+  },
+  "homepage": "https://github.com/natcl/photobooth#readme",
+  "dependencies": {
+    "node-red-contrib-midi": "^1.0.1",
+    "node-red-dashboard": "^2.3.6",
+    "node-red-node-base64": "0.0.4"
+  }
+}
