@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "node-red",
+            "name": "photobooth_node-red",
             "script": "/usr/bin/node-red",
             "args": ["-v", "-u", "/home/pi/node-red/photobooth"],
             "merge_logs": true,

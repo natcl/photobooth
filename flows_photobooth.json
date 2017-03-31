@@ -128,18 +128,19 @@
         "id": "71557d11.d68f04",
         "type": "exec",
         "z": "a567291d.a12e98",
-        "command": "raspistill --nopreview -t 10 -o",
+        "command": "raspistill --nopreview --thumb 320:240:70 -t 10 -o",
         "addpay": true,
         "append": "",
         "useSpawn": "",
         "timer": "",
-        "name": "",
-        "x": 740,
+        "name": "raspistill",
+        "x": 680,
         "y": 140,
         "wires": [
             [
                 "7f2e07fe.87fa6",
-                "4eb52cf0.4cde84"
+                "4eb52cf0.4cde84",
+                "35373161.40a10e"
             ],
             [],
             []
@@ -157,7 +158,7 @@
         "format": "<img src=\"data:image/gif;base64,{{msg.payload}}\">",
         "storeOutMessages": true,
         "fwdInMessages": true,
-        "x": 1280,
+        "x": 1320,
         "y": 120,
         "wires": [
             []
@@ -168,7 +169,7 @@
         "type": "base64",
         "z": "a567291d.a12e98",
         "name": "",
-        "x": 1120,
+        "x": 1160,
         "y": 120,
         "wires": [
             [
@@ -287,7 +288,7 @@
         "name": "",
         "filename": "",
         "format": "",
-        "x": 970,
+        "x": 1030,
         "y": 120,
         "wires": [
             [
@@ -390,7 +391,7 @@
         "y": 520,
         "wires": [
             [
-                "e4dd4b3e.b16d98"
+                "d48b3801.d475a"
             ]
         ]
     },
@@ -504,6 +505,101 @@
         "wires": [
             [
                 "704d88c9.3e5768"
+            ]
+        ]
+    },
+    {
+        "id": "729d2460.5a2d2c",
+        "type": "exec",
+        "z": "a567291d.a12e98",
+        "command": "exiv2 -et",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "",
+        "x": 1180,
+        "y": 220,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "35373161.40a10e",
+        "type": "change",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "filename",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 220,
+        "wires": [
+            [
+                "729d2460.5a2d2c"
+            ]
+        ]
+    },
+    {
+        "id": "6e0ce26a.51dcbc",
+        "type": "inject",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 147,
+        "y": 666,
+        "wires": [
+            [
+                "612942b5.8bf144"
+            ]
+        ]
+    },
+    {
+        "id": "d48b3801.d475a",
+        "type": "debug",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 930,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "87c2867.0ed5178",
+        "type": "inject",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "topic": "",
+        "payload": "picturePath",
+        "payloadType": "global",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 330,
+        "y": 780,
+        "wires": [
+            [
+                "d48b3801.d475a"
             ]
         ]
     }
