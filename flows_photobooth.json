@@ -139,7 +139,6 @@
         "wires": [
             [
                 "7f2e07fe.87fa6",
-                "4eb52cf0.4cde84",
                 "35373161.40a10e"
             ],
             [],
@@ -243,18 +242,6 @@
         ]
     },
     {
-        "id": "4eb52cf0.4cde84",
-        "type": "debug",
-        "z": "a567291d.a12e98",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "true",
-        "x": 990,
-        "y": 60,
-        "wires": []
-    },
-    {
         "id": "11ad2b18.0b6a15",
         "type": "change",
         "z": "a567291d.a12e98",
@@ -288,7 +275,7 @@
         "name": "",
         "filename": "",
         "format": "",
-        "x": 1030,
+        "x": 950,
         "y": 120,
         "wires": [
             [
@@ -354,45 +341,10 @@
         "y": 540,
         "wires": [
             [
-                "89b18c51.97dd98"
+                "d53af848.303b8"
             ],
             [],
             []
-        ]
-    },
-    {
-        "id": "89b18c51.97dd98",
-        "type": "split",
-        "z": "a567291d.a12e98",
-        "name": "",
-        "splt": "\\n",
-        "x": 590,
-        "y": 520,
-        "wires": [
-            [
-                "e09405eb.162e08"
-            ]
-        ]
-    },
-    {
-        "id": "e09405eb.162e08",
-        "type": "join",
-        "z": "a567291d.a12e98",
-        "name": "",
-        "mode": "custom",
-        "build": "array",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "timeout": "",
-        "count": "",
-        "x": 730,
-        "y": 520,
-        "wires": [
-            [
-                "d48b3801.d475a"
-            ]
         ]
     },
     {
@@ -404,7 +356,7 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "{{#payload}}\n    <a href=\"{{.}}\">\n        <img src=\"{{.}}\" width=10%>\n    </a>\n{{/payload}}",
+        "template": "{{#payload}}\n    <a href=\"{{main}}\">\n        <img src=\"{{thumb}}\" width=10%>\n    </a>\n{{/payload}}",
         "x": 1050,
         "y": 520,
         "wires": [
@@ -499,7 +451,7 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "{{{global.picturePath}}} ; ls *.jpg",
+        "template": "{{{global.picturePath}}} ; ls *-thumb.jpg",
         "x": 290,
         "y": 540,
         "wires": [
@@ -554,52 +506,18 @@
         ]
     },
     {
-        "id": "6e0ce26a.51dcbc",
-        "type": "inject",
+        "id": "d53af848.303b8",
+        "type": "function",
         "z": "a567291d.a12e98",
         "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 147,
-        "y": 666,
+        "func": "var out = [];\n\nmsg.payload = msg.payload.split('\\n');\nmsg.payload.pop();\n\nfor (let file of msg.payload) {\n    \n    out.push({main: file.replace('-thumb', ''), thumb: file});\n}\n\nmsg.payload = out;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 520,
         "wires": [
             [
-                "612942b5.8bf144"
-            ]
-        ]
-    },
-    {
-        "id": "d48b3801.d475a",
-        "type": "debug",
-        "z": "a567291d.a12e98",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 930,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "87c2867.0ed5178",
-        "type": "inject",
-        "z": "a567291d.a12e98",
-        "name": "",
-        "topic": "",
-        "payload": "picturePath",
-        "payloadType": "global",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 330,
-        "y": 780,
-        "wires": [
-            [
-                "d48b3801.d475a"
+                "e4dd4b3e.b16d98"
             ]
         ]
     }
