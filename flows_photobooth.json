@@ -128,7 +128,7 @@
         "id": "71557d11.d68f04",
         "type": "exec",
         "z": "a567291d.a12e98",
-        "command": "raspistill --nopreview --thumb 320:240:70 -t 10 -o",
+        "command": "raspistill --nopreview --thumb 320:240:70 -rot 90 -t 10 -o",
         "addpay": true,
         "append": "",
         "useSpawn": "",
