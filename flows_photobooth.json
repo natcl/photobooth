@@ -520,5 +520,29 @@
                 "e4dd4b3e.b16d98"
             ]
         ]
+    },
+    {
+        "id": "8d9d4b38.779488",
+        "type": "ui_button",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "group": "5743a3e7.934534",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Smile !",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "date",
+        "topic": "",
+        "x": 108.33333333333331,
+        "y": 196.66666666666663,
+        "wires": [
+            [
+                "f45e98ae.8825f8"
+            ]
+        ]
     }
 ]
