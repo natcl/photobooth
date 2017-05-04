@@ -17,8 +17,10 @@
 // The `https` setting requires the `fs` module. Uncomment the following
 // to make it available:
 //var fs = require("fs");
+var os = require('os')
+const hostname = os.hostname();
 
-const picturePath = process.env.PICTURE_PATH || "/home/pi/Pictures";
+const picturePath = `${process.env.PICTURE_PATH}/${hostname}` || "/home/pi/Pictures";
 process.env.PICTURE_PATH = picturePath;
 
 module.exports = {

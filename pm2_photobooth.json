@@ -7,7 +7,7 @@
             "merge_logs": true,
             "cwd": "/home/pi/node-red/photobooth",
             "env": {
-                "PICTURE_PATH": "/home/pi/Pictures"
+                "PICTURE_PATH": "/home/pi/photobooth_lux"
             }
         }
     ]

@@ -128,7 +128,7 @@
         "id": "71557d11.d68f04",
         "type": "exec",
         "z": "a567291d.a12e98",
-        "command": "raspistill --nopreview --thumb 320:240:70 -rot 90 -t 10 -o",
+        "command": "raspistill -w 2464 -h 3280 -rot 90 -awb tungsten -ev -3 --nopreview --thumb 240:320:50 -t 10 -o",
         "addpay": true,
         "append": "",
         "useSpawn": "",
@@ -171,9 +171,7 @@
         "x": 1160,
         "y": 120,
         "wires": [
-            [
-                "2f72ba6e.e9e65e"
-            ]
+            []
         ]
     },
     {
