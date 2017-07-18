@@ -113,7 +113,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "repeat": "1200",
+        "repeat": "30",
         "crontab": "",
         "once": false,
         "x": 130,
@@ -158,7 +158,8 @@
         "y": 140,
         "wires": [
             [
-                "11ad2b18.0b6a15"
+                "11ad2b18.0b6a15",
+                "73b0330e.11b90c"
             ]
         ]
     },
@@ -342,13 +343,13 @@
         "id": "729d2460.5a2d2c",
         "type": "exec",
         "z": "a567291d.a12e98",
-        "command": "exiv2 -et",
+        "command": "/home/pi/exiv2/exiv2-trunk/bin/exiv2 -et",
         "addpay": true,
         "append": "",
         "useSpawn": "",
         "timer": "",
-        "name": "",
-        "x": 1260,
+        "name": "Custom-built Exiv2 for CIFS share",
+        "x": 1340,
         "y": 120,
         "wires": [
             [],
@@ -479,14 +480,15 @@
         "type": "function",
         "z": "a567291d.a12e98",
         "name": "HourFilter",
-        "func": "var hour = new Date(msg.payload).getHours();\n\nif (hour >= 8 && hour <= 20) {\n    return msg;\n}",
+        "func": "var date = new Date(msg.payload);\nvar hour = date.getHours();\nvar day = date.getDay();\n\nif (hour >= 8 && hour <= 20 && day >= 1 && day <= 5) {\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
         "x": 300,
         "y": 140,
         "wires": [
             [
-                "f45e98ae.8825f8"
+                "f45e98ae.8825f8",
+                "a2cffb32.5a9008"
             ]
         ]
     },
@@ -498,15 +500,39 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "repeat": "1200",
+        "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 120,
+        "x": 110,
         "y": 200,
         "wires": [
             [
                 "f45e98ae.8825f8"
             ]
         ]
+    },
+    {
+        "id": "a2cffb32.5a9008",
+        "type": "debug",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 588,
+        "y": 228,
+        "wires": []
+    },
+    {
+        "id": "73b0330e.11b90c",
+        "type": "debug",
+        "z": "a567291d.a12e98",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 905,
+        "y": 217,
+        "wires": []
     }
 ]
